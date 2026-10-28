@@ -16,6 +16,20 @@
 		<PackageReference Include="Vortice.Direct2D1" Version="3.8.3" PrivateAssets="All" />
 		<PackageReference Include="Vortice.Direct3D9" Version="3.8.3" PrivateAssets="All" />
 		<PackageReference Include="Vortice.Direct3D11" Version="3.8.3" PrivateAssets="All" />
-		<ProjectReference Include="..\..\MikeNakis.Kit\MikeNakis.Kit\MikeNakis.Kit.csproj" PrivateAssets="All" />
 	</ItemGroup>
+
+	<!-- PEARL: Dotnet does not support swapping between package and project dependencies. The following nonsense is
+	            necessary to work around this limitation. See https://github.com/dotnet/project-system/issues/195 -->
+	<Choose>
+		<When Condition="Exists('$(MSBuildProjectDirectory)\..\..\MikeNakis.Kit\MikeNakis.Kit\MikeNakis.Kit.csproj')">
+			<ItemGroup>
+				<ProjectReference Include="$(MSBuildProjectDirectory)\..\..\MikeNakis.Kit\MikeNakis.Kit\MikeNakis.Kit.csproj" PrivateAssets="All" />
+			</ItemGroup>
+		</When>
+		<Otherwise>
+			<ItemGroup>
+				<PackageReference Include="MikeNakis.Kit-$(PackagesConfiguration)" Version="5.*" PrivateAssets="All" />
+			</ItemGroup>
+		</Otherwise>
+	</Choose>
 </Project>
