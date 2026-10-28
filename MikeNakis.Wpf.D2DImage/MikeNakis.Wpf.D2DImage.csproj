@@ -5,6 +5,8 @@
 		<LangVersion>Default</LangVersion>
 		<Configurations>Debug;Optimized;Develop;Release</Configurations>
 		<UseWPF>True</UseWPF>
+		<!-- Allow building on Linux -->
+		<EnableWindowsTargeting>True</EnableWindowsTargeting>
 	</PropertyGroup>
 
 	<Import Project="..\AllProjects.proj.xml" />
