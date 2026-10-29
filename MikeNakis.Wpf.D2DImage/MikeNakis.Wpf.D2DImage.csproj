@@ -7,10 +7,18 @@
 		<UseWPF>True</UseWPF>
 		<!-- Allow building on Linux -->
 		<EnableWindowsTargeting>True</EnableWindowsTargeting>
+		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 	</PropertyGroup>
 
 	<Import Project="..\AllProjects.proj.xml" />
 	<Import Project="..\BannedApiAnalyzers.proj.xml" />
+
+	<ItemGroup>
+		<!-- PEARL: Visual Studio will show these items in "Solution Explorer", as if they are in the project directory,
+		    even though they are NOT. The "Visible=false" magical incantation is necessary to prevent this. -->
+		<None Include="..\LICENSE.md" Pack="True" PackagePath="/" Visible="False" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Vortice.Direct2D1" Version="3.8.3" PrivateAssets="All" />
